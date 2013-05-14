@@ -35,7 +35,7 @@ dims = ['date','site','ad_size']
 measures= ['revenue','rcpm']
 
 # Lets look at the pretty print hash output after parsing the XML returned by the api
-pp Crack::XML.parse(client.ad_hoc_performance_report(dims,measures,nil,'last week').read_body)
+pp Crack::XML.parse client.ad_hoc_performance_report(dims,measures,nil,'last week')
 ```
 
 ```
@@ -70,6 +70,6 @@ API_SECRET  = 'API SECRET HERE'
 
 path = '/seller/api/ips/v2/etc......'
 client = RubiconApiClient::RubiconClient.new API_ACCOUNT, API_KEY, API_SECRET
-pp client.execute(path).read_body
+pp client.execute(path)
 ```
 This will return the expected results of that API service call in XML most likely.
