@@ -32,7 +32,8 @@ module RubiconApiClient
       auth = Net::HTTP::DigestAuth.new.auth_header uri, res['www-authenticate'], 'GET'
       req = Net::HTTP::Get.new path
       req.add_field 'Authorization', auth
-      net.request req
+      res = net.request req
+      res.read_body
     end
 
     def compose_arguments(hash)

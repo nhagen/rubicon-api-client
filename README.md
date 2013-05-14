@@ -7,7 +7,9 @@ implemented, and error checking is minimal.
 Currently only partially implements seller API. No reason why it couldn't support more demand too :D
 
 Based on public api documentation provided here:
+
 http://kb.rubiconproject.com/index.php/Seller/Seller_API_Specification
+
 http://kb.rubiconproject.com/index.php/Demand/Demand_API_Specification
 
 ### Installation
@@ -70,7 +72,4 @@ path = '/seller/api/ips/v2/etc......'
 client = RubiconApiClient::RubiconClient.new API_ACCOUNT, API_KEY, API_SECRET
 pp client.execute(path).read_body
 ```
-
-The execute method, which is used by all API calls, returns a standard HTTPResponse object.
-For no reason in particular, you must then call read_body on the response to get the actual
-api results.
+This will return the expected results of that API service call in XML most likely.
