@@ -4,7 +4,7 @@ rubicon-api-client
 A simple, unofficial ruby api client for accessing the Rubicon Project's reporting api. Many things have not been
 implemented, and error checking is minimal.
 
-Currently only partially implements seller API. No reason why it couldn't support more demand too :D
+Currently only partially implements seller API. No reason why it couldn't support demand! Pull requests welcome.
 
 Based on public api documentation provided here:
 
