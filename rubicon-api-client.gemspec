@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name          = 'rubicon-api-client'
-    s.version       = '0.1.0'
+    s.version       = '0.1.2'
     s.date          = '2013-05-14'
     s.summary       = 'A simple ruby api client for accessing the Rubicon Project\'s reporting api'
     s.description   = 'A simple ruby api client for accessing the Rubicon Project\'s reporting api'

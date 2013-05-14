@@ -69,7 +69,7 @@ module RubiconApiClient
     end
     
     def ad_hoc_performance_report(dimensions, measures, currency=nil, *date_range)
-      possible_dims = ['date','site','zone','country','keyword','campaign','campaign_relationship','partner','agency']
+      possible_dims = ['date','ad_size','site','zone','country','keyword','campaign','campaign_relationship','partner','agency']
       possible_measures = ['paid_impressions','total_impressions','revenue','ecpm','rcpm','fill_rate']
 
       args = parse_date date_range
