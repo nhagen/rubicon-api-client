@@ -10,11 +10,16 @@ module RubiconApiClient
       ['today', 'yesterday', 'this week', 'last week', 'this month', 'last month', 'this year', 'last 7', 'last 30', 'all']
     end
 
+    def response_formats
+        { :xml => 'application/xml', :json => 'application/json', :csv => 'text/csv' }
+    end
 
-    def initialize(id, key, secret)
+
+    def initialize(id, key, secret, format=:xml)
       @id = id
       @key = key
       @secret = secret
+      @response_format = response_formats[format]
     end
 
     def execute(path)
@@ -32,6 +37,7 @@ module RubiconApiClient
       auth = Net::HTTP::DigestAuth.new.auth_header uri, res['www-authenticate'], 'GET'
       req = Net::HTTP::Get.new path
       req.add_field 'Authorization', auth
+      req['Accept'] = @response_format
       res = net.request req
       res.read_body
     end
