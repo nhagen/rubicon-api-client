@@ -33,7 +33,7 @@ API_SECRET  = 'API SECRET HERE'
 client = RubiconApiClient::Seller.new API_ACCOUNT, API_KEY, API_SECRET
 
 # Define dimensions according to api specs
-dims = ['date','site','ad_size']
+dims = ['date','site']
 measures= ['revenue','rcpm']
 
 # Lets look at the pretty print hash output after parsing the XML returned by the api
