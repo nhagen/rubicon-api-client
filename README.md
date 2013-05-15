@@ -12,6 +12,8 @@ http://kb.rubiconproject.com/index.php/Seller/Seller_API_Specification
 
 http://kb.rubiconproject.com/index.php/Demand/Demand_API_Specification
 
+Default values and behaviors are taken from the specifications.
+
 ### Installation
 ```
 $ gem install rubicon-api-client
@@ -54,7 +56,7 @@ $ ruby rubicon_report.rb
         {"date"=>"2013-05-11", "revenue"=>"41.8078", "rcpm"=>"0.99"}]}]}}
 ```
 
-### Documentation
+### Examples
 
 The RubiconApiClient module currently contains 2 classes. The first is a base client class
 with methods for interacting with the API. If you know what API path you're going to call,
@@ -72,4 +74,48 @@ path = '/seller/api/ips/v2/etc......'
 client = RubiconApiClient::RubiconClient.new API_ACCOUNT, API_KEY, API_SECRET
 pp client.execute(path)
 ```
-This will return the expected results of that API service call in XML most likely.
+This will return the expected results of that API service call in XML.
+
+
+
+```ruby
+require 'rubicon-api-client'
+require 'pp'
+
+API_ACCOUNT = 'API ACCOUNT ID HERE'
+API_KEY     = 'API KEY HERE'
+API_SECRET  = 'API SECRET HERE'
+
+client = RubiconApiCient::Seller.new API_ACCOUNT,API_KEY, API_SECRET, :json
+response = client.zone_performance_report
+```
+This will return a zone report for yesterday's data, using all sites, as JSON.
+
+
+### Documentation
+
+#### RubiconApiClient::RubiconClient
+
+* **initialize(account id, key,  secret, format)**
+    * **account id** - <_string_> - Rubicon account ID
+    * **key** - <_string_> - API key shared between Rubicon and Client. Used as username in authentication
+    * **secret** - <_string_> - API secret shared between Rubicon and Client. Used as password in authentication
+    * **format** - <_symbol_> - Type of data format to request
+        * _:xml, :json, :csv_
+* **execute(path)**
+    * **path** - <_string_> - URL to send API request to.
+        - Example: `/seller/api/ips/v1/reports/zone/performance/123456 `
+
+#### RubiconApiClient::Seller < RubiconApiClient::RubiconClient
+* **zone_performance_report(site_ids, *date_range)**
+    * **site_ids** - <_array_> - Set of site ids to pull data for
+    * **\*date_range** - <_strings_> - A string describing a time period, or two strings representing the start and end dates respectively. Valid input includes:
+        * `zone_performance_report(nil, 'last week')`
+        * `zone_performance_report(nil, 'yesterday', 'August 12, 2012', '2012-08-14')`
+    * **ad_hoc_performance_reports(dimensions, measures, currency, *date_range)**
+        * **dimensions** - <_array_> - Dimensions to retrieve data by
+            * _'date', 'ad_size', 'site', 'zone', 'country', 'keyword', 'campaign', 'campaign_relationship', 'partner', 'agency'_
+        * **meaures** - <_array_> - Metrics to pull
+            * _'paid_impressions', 'total_impressions', 'revenue', 'ecpm', 'rcpm', 'fill_rate'_
+        * **currency** - <_string_> - Currency abbreviation describing currency to display data in
+        * **date_range** - <_strings_> - A string describing time period, or two strings representing the start and end dates respetively.
