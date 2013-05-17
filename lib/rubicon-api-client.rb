@@ -57,7 +57,7 @@ module RubiconApiClient
         args['when'] = date_range_splat[0].to_s
       elsif date_range_splat.length == 2
         args['start'] = Date.parse(date_range_splat[0].to_s).to_s
-        args['end'] = Date.parse(date_range_splat[0].to_s).to_s
+        args['end'] = Date.parse(date_range_splat[1].to_s).to_s
       end
       args
     end
